@@ -3,6 +3,14 @@ import dotenv from 'dotenv'
 dotenv.config()
 import { chartRegions } from './chart_regions.js';
 
+// code command handler 
+const fs = require('fs');
+client,commands = new Discord.Collection();
+const commandFiles = fs.readdirSync('./commands/').filter(file => file.endwith(',js'));
+for(const file of commandFiles){
+    const command = require(`./commands/${file}`);
+}
+
 const client = new DiscordJS.Client({
     intents:[
         Intents.FLAGS.GUILDS,
