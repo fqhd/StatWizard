@@ -1,0 +1,4 @@
+#Function to be coded in the bot
+
+- User online time stats
+- Region stats
