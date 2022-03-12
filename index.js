@@ -1,7 +1,7 @@
 import DiscordJS, { Intents } from 'discord.js'
 import dotenv from 'dotenv'
 dotenv.config()
-import { chartRegions } from './chart_regions.js';
+import { command_map } from './command_modules/command_handler.js';
 
 const client = new DiscordJS.Client({
     intents:[
@@ -15,14 +15,14 @@ client.on('ready', () =>{
 })
 
 client.on('messageCreate', (message) => {
-    if(message.content == 'regions'){
-        chartRegions(client, message);
-    }
     if(!message.content.startsWith('-') || message.author.bot) return;
+    const tokens = message.content.split(' ');
+    const command = tokens[0].slice(1);
+    const args = tokens.slice(1);
+    if(command_map[command]){
+        command_map[command](client, message, args);
+    }
+});
 
-    var msg = message.content.toLowerCase().replace(/^\s+|\s+$/g, '').trim().substring(1);
-    var cmd = msg.split(' ')[0];
-    var args = msg.split(' ').slice(1).join(' ');
-})
 
 client.login(process.env.TOKEN)

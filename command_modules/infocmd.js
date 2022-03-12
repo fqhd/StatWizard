@@ -1,6 +1,6 @@
 import DiscordJS, { MessageEmbed } from 'discord.js'
 
-export default function serverInfo(message){
+export default function serverInfo(client, message, args){
 
     var server = message.guild;
 
