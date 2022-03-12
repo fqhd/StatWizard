@@ -11,7 +11,7 @@ const client = new DiscordJS.Client({
 });
 
 client.on('ready', () =>{
-    console.log('Hello World');
+    console.log('Bot is online');
 })
 
 client.on('messageCreate', (message) => {
