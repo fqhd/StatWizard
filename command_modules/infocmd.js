@@ -1,12 +1,12 @@
 import DiscordJS, { MessageEmbed } from 'discord.js'
 
-export default function serverInfo(client, message, args){
+export default function serverInfo(message){
 
     var server = message.guild;
 
     const  infoEmbed = new MessageEmbed()
     .setColor('#b6f542')
-    .setTitle(`**Info about ${server.name}**`)
+    .setTitle(`**SERVER STATS**`)
     .setAuthor(server.name, server.iconURL({dynamic: true}))
     .addFields(
         {
@@ -56,6 +56,7 @@ export default function serverInfo(client, message, args){
         }
 
     )
-    .setFooter(`last updated on: ${new Date().toLocaleString()}`)
-    message.reply({ embeds: [infoEmbed] });
+    .setFooter(`last updated on: ${new Date().toLocaleString()}`);
+
+    return infoEmbed;
 }
